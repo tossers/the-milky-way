@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Row, Col, Button, Card} from 'antd';
-import "./Entrust.css";
+import './Entrust.css';
 // import * as upImg from '../image/涨.png';
 
 export class Entrust extends React.Component<{}, {}> {
@@ -11,7 +11,7 @@ export class Entrust extends React.Component<{}, {}> {
                 <Row  justify="center">
                     <Col span={12} style={{textAlign: 'center'}}>
                         <span style={{fontSize: '30px', color: '#DD5B64'}}>13056.0<img style={{height: '22px', marginLeft: '2px'}} alt="" src={'image/涨.png'}/></span>
-                        <Button type="primary" className="entrustBtn"  style={{background: '#DD5B64'}}><img alt="" src="image/订货.png"/>订货</Button>
+                        <Button type="primary" className="entrustBtn" style={{background: '#DD5B64'}}><img alt="" src="image/订货.png"/>订货</Button>
                         <div className="underBtn"><span>最高</span><span style={{color: '#DD5B64'}}>13067.0</span></div>
                         <div className="underBtn"><span>最低</span><span style={{color: '#5BB677'}}>13030.0</span></div>
                     </Col>

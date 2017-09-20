@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Card, Row, Col, Table, Button} from 'antd';
 import {positionDataSource} from '../mock/mock';
-import './UserInfo.css'
+import './UserInfo.css';
 
 export class UserInfo extends React.Component<{}, {}> {
     title(){
@@ -20,7 +20,16 @@ export class UserInfo extends React.Component<{}, {}> {
         }, {
             title: '方向',
             dataIndex: 'direction',
-            key: 'direction'
+            key: 'direction',
+            render: (text) => (
+                <span>
+                    {
+                        text.toLowerCase() === 'buy' ?
+                            <span style={{padding: '2px 5px', borderRadius: '50%', background: 'rgb(221, 91, 100)', color: '#fff'}}>买</span>:
+                            <span style={{padding: '2px 5px', borderRadius: '50%', background: 'rgb(91, 182, 119)', color: '#fff'}}>卖</span>
+                    }
+                </span>
+            )
         }, {
             title: '手数',
             dataIndex: 'lot',
@@ -57,11 +66,18 @@ export class UserInfo extends React.Component<{}, {}> {
             title: '',
             dataIndex: 'operation',
             key: 'operation',
-            render: () => <div><Button>设置止盈/止损</Button><Button>平仓</Button></div>
+            width: '20%',
+            render: () => (
+                <div>
+                    <Button className={'operationBtn'} style={{background: '#34659B'}} type={'primary'}>设置止盈/止损</Button>
+                    <Button className={'operationBtn'} style={{background: '#e58c35'}} type={'primary'}>平仓</Button>
+                </div>
+            )
+
         }];
 
         return (
-            <Card title="账户信息" style={{padding: '0 2px', borderBottom: '0'}} bodyStyle={{padding: '0'}} noHovering={true}>
+            <Card title={<span style={{background: 'background: rgb(235, 239, 241, 0.3)'}}>账户信息</span>} style={{padding: '0 2px', borderBottom: '0'}} bodyStyle={{padding: '0'}} noHovering={true}>
                 <Row>
                     <Col span={4} style={{paddingRight: '5px'}}>
                         <Card className="assetsCard">

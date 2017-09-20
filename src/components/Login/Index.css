@@ -1,0 +1,105 @@
+.login{
+    height: 100%;
+    background-size: cover;
+}
+.login .closeImg{
+    cursor: pointer;
+    position: absolute;
+    z-index: 20;
+    right: 0;
+    font-size: 18px;
+    margin: 15px 15px 0 0;
+}
+.login .closeImg:hover{
+    background: rgb(211, 211, 211);
+    color: #f31f1f;
+}
+.login .closeImg:hover{
+
+}
+.login>img{
+    margin: 20px;
+}
+
+.login>div:first-child{
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 3px;
+    left: 25%;
+    top: 25%;
+}
+
+.login>div:first-child>div{
+    color: rgba(255, 255, 255, 0.69);
+}
+.login>div:last-child{
+    position: relative;
+    float: right;
+    width: 25%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid gray;
+    padding: 0 30px;
+}
+
+.login .ant-tabs-nav .ant-tabs-tab{
+    width: 50%;
+    text-align: center;
+    padding: 15px 20px;
+    margin-right: 0;
+}
+
+.login .ant-tabs-nav{
+    width: 100%;
+}
+.login .ant-tabs-nav>div:first-child{
+    width: 50%!important;
+}
+
+.login .placeholder{
+    position: absolute;
+    z-index: 20;
+    color: rgba(191, 191, 191, 0.8);
+    top: -35%;
+    left: 5%;
+    line-height: 2;
+    padding: 0 3px;
+    background: #fff;
+}
+.login .ant-form-item-control{
+    margin-top: 20px;
+}
+
+.login .aTag a{
+    color: rgba(191, 191, 191, 0.9);
+}
+.login a:hover{
+    color: #108ee9;
+}
+
+.login .ant-input-lg{
+    height: 45px
+}
+
+.login .backSpan{
+    padding: 16px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login .backSpan>img{
+    height: 20px;
+    vertical-align: bottom;
+}
+
+.login .has-success.has-feedback:after{
+    line-height: 45px;
+}
+
+.login .has-error.has-feedback:after{
+    line-height: 45px;
+}

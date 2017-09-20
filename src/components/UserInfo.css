@@ -8,14 +8,15 @@
 }
 
 .ant-card-head{
+    background: rgba(235, 239, 241, 0.6);
     height: 100%;
     line-height: 2;
 }
 
 .assetsCard{
-    height: 227px;
+    height: 210px;
     border-bottom: 0;
-    background: rgba(235, 239, 241, 0.38);
+    background: rgb(235, 239, 241);
 }
 
 .assetsCard ul{
@@ -48,6 +49,13 @@
 {
     border-top: 1px solid #e9e9e9;
     border-bottom: 1px solid #e9e9e9;
-    background: rgba(235, 239, 241, 0.38);
+    background: rgb(235, 239, 241);
+    border-radius: 0;
+}
+
+.assetsCard .operationBtn{
+    width: 107px;
+    margin-left: 8px;
+    border: 0;
     border-radius: 0;
 }
