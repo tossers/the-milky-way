@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {Card, Button} from 'antd';
+import {Card, Button, Icon} from 'antd';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 export class Header extends React.Component<{}, {}> {
@@ -13,6 +14,12 @@ export class Header extends React.Component<{}, {}> {
                 <Button className={'headerBtn'} type={'primary'}>
                     <img alt="" src={'image/顶部-交易.png'}/>交易
                 </Button>
+                <span style={{float: 'right', fontSize: '14px', padding: '10px 20px 0 0'}}>
+                    <Icon style={{marginRight: '8px'}} type={'user'}/>
+                    <Link to={'/login'}>登录</Link>
+                    <span className={'ant-divider'}/>
+                    <Link to={'/register'}>注册</Link>
+                </span>
             </Card>
         );
     }

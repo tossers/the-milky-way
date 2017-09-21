@@ -32,13 +32,13 @@ class RegisterForm extends React.Component<FormComponentProps &{
         check: false,
         count: 60,
         confirmDirty: false,
-        readHelp: true,
+        readHelp: false,
     };
     interval;
     CountOneMinute = () => {
         this.interval = setInterval(() => {
             let {count} = this.state;
-            if (count === 0) {
+            if (count <= 1) {
                 clearInterval(this.interval);
                 this.setState({count: 60});
                 return;
@@ -70,7 +70,7 @@ class RegisterForm extends React.Component<FormComponentProps &{
     };
 
     checkPhone = (rule, value, callback) => {
-        let pattern = /^((\(\d{3}\))|(\d{3}\-))?13\d{9}$/;
+        let pattern = /^1[3|4|5|8][0-9]\d{4,8}$/;
         if (pattern.test(value)) {
             this.setState({phone: value});
             callback();
@@ -126,7 +126,6 @@ class RegisterForm extends React.Component<FormComponentProps &{
                     })(
                         <Input
                             size="large"
-                            value={phone}
                             placeholder={phoneHolder}
                             onChange={(e) => this.setState({phone: e.target.value})}
                             onBlur={() => this.setState({phoneHolder: '手机号'})}
@@ -134,32 +133,6 @@ class RegisterForm extends React.Component<FormComponentProps &{
                         />
                     )}
 
-                </Form.Item>
-                <Form.Item>
-                    <span className={'placeholder'} style={{display: messageCode || !messageCodeHolder ? '' : 'none'}}>短信验证码</span>
-                    {getFieldDecorator('messageCode', {
-                        rules: [{
-                            required: true, message: '请输入验证码!'
-                        }],
-                    })(
-                        <Input
-                            size="large"
-                            value={messageCode}
-                            placeholder={messageCodeHolder}
-                            suffix={
-                                <div style={{width: '100px', fontSize: '14px'}}>
-                                    <span style={{height: '10px'}} className="ant-divider"/>
-                                    {
-                                        count === 60 ?
-                                            <a onClick={this.CountOneMinute}>发送验证码</a> :
-                                            <span>{count}s 重新发送</span>
-                                    }
-                                </div>}
-                            onChange={(e) => this.setState({messageCode: e.target.value})}
-                            onBlur={() => this.setState({messageCodeHolder: '短信验证码'})}
-                            onFocus={() => this.setState({messageCodeHolder: ''})}
-                        />
-                    )}
                 </Form.Item>
                 <Form.Item hasFeedback={true}>
                     <span className={'placeholder'}
@@ -174,7 +147,6 @@ class RegisterForm extends React.Component<FormComponentProps &{
                         <Input
                             type="password"
                             size="large"
-                            value={password}
                             placeholder={passwordHolder}
                             onChange={(e) => this.setState({password: e.target.value})}
                             onBlur={() => this.setState({passwordHolder: '密码由8-16位英文和数字组成'})}
@@ -195,7 +167,6 @@ class RegisterForm extends React.Component<FormComponentProps &{
                         <Input
                             type="password"
                             size="large"
-                            value={passwordConfirm}
                             placeholder={passwordConfirmHolder}
                             onChange={(e) => this.setState({password: e.target.value})}
                             onBlur={(e) => {
@@ -206,6 +177,31 @@ class RegisterForm extends React.Component<FormComponentProps &{
                         />
                     )}
                 </Form.Item>
+                <Form.Item>
+                    <span className={'placeholder'} style={{display: messageCode || !messageCodeHolder ? '' : 'none'}}>短信验证码</span>
+                    {getFieldDecorator('messageCode', {
+                        rules: [{
+                            required: true, message: '请输入验证码!'
+                        }],
+                    })(
+                        <Input
+                            size="large"
+                            placeholder={messageCodeHolder}
+                            suffix={
+                                <div style={{width: '100px', fontSize: '14px'}}>
+                                    <span style={{height: '10px'}} className="ant-divider"/>
+                                    {
+                                        count === 60 ?
+                                            <a onClick={this.CountOneMinute}>发送验证码</a> :
+                                            <span>{count}s 重新发送</span>
+                                    }
+                                </div>}
+                            onChange={(e) => this.setState({messageCode: e.target.value})}
+                            onBlur={() => this.setState({messageCodeHolder: '短信验证码'})}
+                            onFocus={() => this.setState({messageCodeHolder: ''})}
+                        />
+                    )}
+                </Form.Item>
                 <Form.Item style={{marginTop: 0}}>
                     {
                         type !== 'register' ? null :
@@ -213,9 +209,9 @@ class RegisterForm extends React.Component<FormComponentProps &{
                                 <img
                                     alt=""
                                     style={{height: '10px', margin: '0 5px'}}
-                                    onClick={() => this.setState({check: !check, readHelp: !readHelp})}
+                                    onClick={() => this.setState({check: !check, readHelp: check})}
                                     src={`image/${check ? '已' : '未'}阅读风险说明.png`}/>我已认真阅读<a>风险说明</a>
-                                {readHelp? null: <span style={{color: 'red'}}>请阅读风险说明</span>}
+                                {!readHelp? null: <span style={{color: 'red'}}> 请阅读风险说明!</span>}
                             </span>
                     }
                     <Button

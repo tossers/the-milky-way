@@ -33,7 +33,7 @@ class LoginForm extends React.Component<FormComponentProps& {
     CountOneMinute = () => {
         this.interval = setInterval(() => {
             let {count} = this.state;
-            if(count === 0){
+            if(count <= 1){
                 clearInterval(this.interval);
                 this.setState({count: 60});
                 return;
@@ -42,7 +42,7 @@ class LoginForm extends React.Component<FormComponentProps& {
         }, 1000);
     };
     checkPhone = (rule, value, callback) => {
-        let pattern = /^((\(\d{3}\))|(\d{3}\-))?13\d{9}$/;
+        let pattern = /^1[3|4|5|8][0-9]\d{4,8}$/;
         if (pattern.test(value)) {
             this.setState({phone: value});
             callback();
@@ -55,12 +55,22 @@ class LoginForm extends React.Component<FormComponentProps& {
             }
         }
     };
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log(values);
+            }
+        });
+    };
+
     render() {
         const {changePassword} = this.props;
         const {getFieldDecorator} = this.props.form;
         const {phoneHolder, passwordHolder, codeHolder, phone, password, code, userMessage, messageCode, messageCodeHolder, count} = this.state;
         return (
-            <Form style={{marginTop: '10px', position: 'relative'}}>
+            <Form style={{marginTop: '10px', position: 'relative'}} onSubmit={this.handleSubmit}>
                 <Form.Item hasFeedback={true}>
                     <span className={'placeholder'} style={{display: phone || !phoneHolder ? '': 'none'}}>手机号</span>
                     {getFieldDecorator('phone', {
@@ -72,7 +82,6 @@ class LoginForm extends React.Component<FormComponentProps& {
                     })(
                         <Input
                             size="large"
-                            value={phone}
                             placeholder={phoneHolder}
                             onChange={(e) => this.setState({phone: e.target.value})}
                             onBlur={() => this.setState({phoneHolder: '手机号'})}
@@ -92,7 +101,6 @@ class LoginForm extends React.Component<FormComponentProps& {
                                 <Input
                                     type="password"
                                     size="large"
-                                    value={password}
                                     placeholder={passwordHolder}
                                     onChange={(e) => this.setState({password: e.target.value})}
                                     onBlur={() => this.setState({passwordHolder: '密码'})}
@@ -110,7 +118,6 @@ class LoginForm extends React.Component<FormComponentProps& {
                     })(
                         <Input
                             size="large"
-                            value={code}
                             placeholder={codeHolder}
                             suffix={<img style={{width: '100px', background: '#00a854', height: '35px'}} alt="" />}
                             onChange={(e) => this.setState({code: e.target.value})}
@@ -130,7 +137,6 @@ class LoginForm extends React.Component<FormComponentProps& {
                         })(
                             <Input
                                 size="large"
-                                value={messageCode}
                                 placeholder={messageCodeHolder}
                                 suffix={
                                     <div style={{width: '100px', fontSize: '14px'}}>
@@ -149,7 +155,7 @@ class LoginForm extends React.Component<FormComponentProps& {
                     </Form.Item>
                 }
                 <Form.Item className={'aTag'}>
-                    <Button style={{border: 0, height: '45px', width: '100%', background: '#3D77B6'}} type={'primary'}>登录</Button>
+                    <Button style={{border: 0, height: '45px', width: '100%', background: '#3D77B6'}} type={'primary'} htmlType="submit">登录</Button>
                     <span style={{float: 'left', color: 'rgba(191, 191, 191, 0.9)'}}><a onClick={() => {changePassword();}}>忘记密码?</a></span>
                     <span style={{float: 'right', color: 'rgba(191, 191, 191, 0.9)'}}>
                         {

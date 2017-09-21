@@ -77,9 +77,9 @@ export class UserInfo extends React.Component<{}, {}> {
         }];
 
         return (
-            <Card title={<span style={{background: 'background: rgb(235, 239, 241, 0.3)'}}>账户信息</span>} style={{padding: '0 2px', borderBottom: '0'}} bodyStyle={{padding: '0'}} noHovering={true}>
-                <Row>
-                    <Col span={4} style={{paddingRight: '5px'}}>
+            <Card title={<span style={{background: 'background: rgb(235, 239, 241, 0.3)'}}>账户信息</span>} style={{height: '100%', padding: '0 2px', borderBottom: '0'}} bodyStyle={{height: '100%', padding: '0'}} noHovering={true}>
+                <Row style={{height: '100%',}}>
+                    <Col span={4} style={{height: '100%', paddingRight: '5px'}}>
                         <Card className="assetsCard">
                             <ul>
                                 <li><img alt="" src={'image/金三角.png'}/>黄河金三角账号：<span>360000000097</span></li>
@@ -90,7 +90,7 @@ export class UserInfo extends React.Component<{}, {}> {
                             </ul>
                         </Card>
                     </Col>
-                    <Col span={4}>
+                    <Col span={4} style={{height: '100%'}}>
                         <Card className="assetsCard">
                             <ul>
                                 <li><img alt="" src={'image/南交所.png'}/>南交所账号：<span>360000000097</span></li>
@@ -101,13 +101,14 @@ export class UserInfo extends React.Component<{}, {}> {
                             </ul>
                         </Card>
                     </Col>
-                    <Col span={16}>
+                    <Col span={16} style={{height: '100%'}}>
                         <Card className="assetsCard" style={{background: '#fff'}} bodyStyle={{padding: '0'}}>
                             <Table
                                 columns={columns}
                                 dataSource={positionDataSource}
                                 title={this.title}
                                 pagination={false}
+
                             />
                         </Card>
                     </Col>

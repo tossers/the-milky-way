@@ -3,8 +3,12 @@ import {Tabs, Icon} from 'antd';
 import './Index.css';
 import {Login} from './Login';
 import {Register} from './Register';
+import {Link} from 'react-router-dom';
+
 const TabPane = Tabs.TabPane;
-export class Index extends React.Component<{}, {
+export class Index extends React.Component<{
+    location?: Location;
+}, {
     type: string;
 }> {
     state = {
@@ -12,6 +16,7 @@ export class Index extends React.Component<{}, {
     };
 
     render() {
+        const {pathname} = this.props.location as Location;
         const {type} = this.state;
         return (
             <div className={'login'} style={{background: `url('image/背景.png')`}}>
@@ -23,15 +28,15 @@ export class Index extends React.Component<{}, {
                 </div>
                 <img src={'image/logo--登录.png'}/>
                 {/*<img className={'closeImg'} src={'image/登录=-关闭.png'}/>*/}
-                <Icon className="closeImg" type={'close'}/>
+                <Link to={'/'}><Icon className="closeImg" type={'close'}/></Link>
                 <div>
                     {
                         type === 'register'?
-                            <Tabs>
-                                <TabPane tab={'登录'} key={'1'} >
+                            <Tabs defaultActiveKey={pathname}>
+                                <TabPane tab={'登录'} key={'/login'} >
                                     <Login changePassword={() => this.setState({type: 'changePassword'})}/>
                                 </TabPane>
-                                <TabPane tab={'注册'} key={'2'} >
+                                <TabPane tab={'注册'} key={'/register'} >
                                     <Register type={'register'} title={'完成注册'}/>
                                 </TabPane>
                             </Tabs>:
