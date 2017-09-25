@@ -3,11 +3,21 @@ import {Card, Row, Col, Table, Button} from 'antd';
 import {positionDataSource} from '../mock/mock';
 import './UserInfo.css';
 
-export class UserInfo extends React.Component<{}, {}> {
+export class UserInfo extends React.Component<{}, {
+    chosen: string;
+}> {
+    state = {
+        chosen: '持仓',
+    };
+
     title(){
         return (
             <div>
-                <Button type={'primary'} size={'large'} className="tableTitleBtn" style={{background: '#fff', color: '#DD5B64'}}>持仓(1)</Button>
+                <Button
+                    type={'primary'}
+                    size={'large'}
+                    className="tableTitleBtn"
+                    style={{background: '#fff', color: '#DD5B64'}}>持仓(1)</Button>
                 <Button type={'primary'} size={'large'} className="tableTitleBtn" style={{background: '#DDE3E6', color: 'rgba(0,0,0,.65)'}}>交易记录</Button>
             </div>
         );

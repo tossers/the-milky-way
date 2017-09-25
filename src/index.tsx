@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import App from './routes/App';
-import {Index as Login} from './components/Login/Index';
+import Login from './routes/Login';
 import {Provider} from 'mobx-react';
 import store from './stores';
 import './index.css';

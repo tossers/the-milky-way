@@ -1,0 +1,6 @@
+.chart{
+    height: 600px;
+}
+.chart .ant-card-head{
+    padding: 0;
+}

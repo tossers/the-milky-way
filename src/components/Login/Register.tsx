@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Form, Input, Button} from 'antd';
 import {FormComponentProps} from 'antd/lib/form/Form';
-import './Index.css';
+import '../../routes/Login.css';
 
 class RegisterForm extends React.Component<FormComponentProps &{
     title: string;
@@ -35,6 +35,11 @@ class RegisterForm extends React.Component<FormComponentProps &{
         readHelp: false,
     };
     interval;
+
+    componentDidMount(){
+        this.props.form.setFieldsValue({phone: '', password: ''});
+    }
+
     CountOneMinute = () => {
         this.interval = setInterval(() => {
             let {count} = this.state;
@@ -70,7 +75,7 @@ class RegisterForm extends React.Component<FormComponentProps &{
     };
 
     checkPhone = (rule, value, callback) => {
-        let pattern = /^1[3|4|5|8][0-9]\d{4,8}$/;
+        let pattern = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
         if (pattern.test(value)) {
             this.setState({phone: value});
             callback();

@@ -59,24 +59,26 @@ export class MyWebSocket{
     reconnect(){
         if(this.lock){
             this.lock = false;
-            notification.error({
-                key: 'wsReconnecting',
-                message: 'WebSocket',
-                description: 'WebSocket重连中',
-                placement: 'bottomRight',
-                duration: 99999999,
-            });
+            console.log('WebSocket重连中...');
+            // notification.error({
+            //     key: 'wsReconnecting',
+            //     message: 'WebSocket',
+            //     description: 'WebSocket重连中...',
+            //     placement: 'bottomRight',
+            //     duration: 99999999,
+            // });
             let cycle = setInterval(() => {
                 if(this.instance.readyState === ReadyState.CONNECTING || this.instance.readyState === ReadyState.OPEN){
                     clearInterval(cycle);
                     this.lock = true;
+                    console.log('WebSocket重连成功');
                     notification.close('wsReconnecting');
-                    notification.success({
-                        message: 'WebSocket',
-                        description: 'WebSocket重连成功',
-                        placement: 'bottomRight',
-                        duration: 5
-                    });
+                    // notification.success({
+                    //     message: 'WebSocket',
+                    //     description: 'WebSocket重连成功',
+                    //     placement: 'bottomRight',
+                    //     duration: 5
+                    // });
                 }else{
                     this.connect();
                 }
