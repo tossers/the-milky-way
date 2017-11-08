@@ -37,7 +37,7 @@ class Header extends React.Component<{
                     isLogin ?
                         <Menu onClick={this.handleOnClick} style={{display: 'inline-block', float: 'right'}} mode={'horizontal'}>
                             <Menu.SubMenu title={<span><Icon type="user"/>{name}</span>}>
-                                <Menu.Item key="logout">退出</Menu.Item>
+                                <Menu.Item key="logout">退出</Menu.Item> 你
                             </Menu.SubMenu>
                         </Menu>
                         :
